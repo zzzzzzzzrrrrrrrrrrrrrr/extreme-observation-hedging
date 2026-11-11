@@ -1,0 +1,31 @@
+# Local credentials; keep the shared template.
+.env
+.env.*
+!.env.example
+.pgpass
+lseg-data.config.json
+
+# Local datasets, logs, and exploratory work.
+/data/
+/logs/
+/scratch/
+
+# Generated report deliverables; keep their sources in notebooks/.
+/reports/
+
+# Python environments, bytecode, and build outputs.
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+/build/
+/dist/
+
+# Notebook and report working files.
+.ipynb_checkpoints/
+.quarto/
+_freeze/
+
+# Operating-system metadata.
+.DS_Store
+Thumbs.db
