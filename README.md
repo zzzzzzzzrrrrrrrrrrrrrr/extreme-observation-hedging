@@ -60,6 +60,25 @@ makes `finance_data` and `hedging` importable without notebook path edits.
 Select the same interpreter as the notebook kernel. Windows and macOS have not
 been tested end to end.
 
+To update an existing environment after pulling a revised snapshot, select the
+same interpreter and preview the changes before installing:
+
+```bash
+uv pip install --python python -r requirements.txt --dry-run
+uv pip install --python python -r requirements.txt
+uv pip check --python python
+python -B -m unittest discover -s tests -v
+```
+
+No environment deletion or new clone is needed. Git updates the files, not the
+installed packages. Installation adds missing packages and aligns differing
+versions with the pins; unrelated packages remain installed. Use `pip install`
+rather than `pip sync` for a shared environment, since synchronization removes
+packages absent from the snapshot. The snapshot includes CVXPY and its solvers
+as optimization tools; the current provider adapters do not require them.
+Version pins and these checks verify the present setup, not compatibility with
+arbitrary future dependency or research-code changes.
+
 ## Data and credentials
 
 Use `hedging.paths.project_root()` and `hedging.paths.data_root()` to locate
